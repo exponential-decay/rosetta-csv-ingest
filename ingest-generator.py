@@ -8,7 +8,7 @@ from RosettaCSVGenerator import RosettaCSVGenerator
 
 def rosettacsvgeneration(droidcsv, rosettaschema):
    csvgen = RosettaCSVGenerator(droidcsv, rosettaschema)
-   #csvgen.export2rosettacsv()
+   csvgen.export2rosettacsv()
 
 def main():
 
