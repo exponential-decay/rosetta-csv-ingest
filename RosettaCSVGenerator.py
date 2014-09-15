@@ -8,19 +8,10 @@ import ConfigParser
 import JsonTableSchema
 from droidcsvhandlerclass import *
 from rosettacsvsectionsclass import RosettaCSVSections
-from ImportSheetGenerator import ImportSheetGenerator
 
 class RosettaCSVGenerator:
 
-   def __init__(self):
-      self.config = ConfigParser.RawConfigParser()
-      self.config.read('rosetta-csv-mapping.cfg')   
-
-      self.droidcsv = False
-      self.exportcsv = False
-      self.rosettaschema = False
-
-   def __init__(self, droidcsv=False, exportsheet=False, rosettaschema=False):
+   def __init__(self, droidcsv=False, rosettaschema=False):
       self.config = ConfigParser.RawConfigParser()
       self.config.read('rosetta-csv-mapping.cfg')   
       
@@ -34,9 +25,6 @@ class RosettaCSVGenerator:
       #Grab Rosetta Sections
       rs = RosettaCSVSections()
       self.rosettasections = rs.sections
-      
-      #Get some functions from ImportGenerator
-      self.impgen = ImportSheetGenerator()
 
    def add_csv_value(self, value):
       field = ''
