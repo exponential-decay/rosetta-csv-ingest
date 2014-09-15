@@ -31,7 +31,7 @@ def main():
    args = parser.parse_args()
    
    if args.csv and args.ros:
-      rosettacsvgeneration(args.csv, args.exp, args.ros)
+      rosettacsvgeneration(args.csv, args.ros)
    else:
       parser.print_help()
       sys.exit(1)

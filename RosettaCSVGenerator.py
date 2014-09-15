@@ -16,7 +16,6 @@ class RosettaCSVGenerator:
       self.config.read('rosetta-csv-mapping.cfg')   
       
       self.droidcsv = droidcsv
-      self.exportsheet = exportsheet
       
       #NOTE: A bit of a hack, compare with import schema work and refactor
       self.rosettaschema = rosettaschema
@@ -51,22 +50,6 @@ class RosettaCSVGenerator:
       for column in range(columno):
          columns = columns + '"",'
       return columns
-
-   def grabdroidvalue(self, md5, itemtitle, field, rosettafield, pathmask):
-   
-      #TODO: Potentially index droidlist by MD5 or SHA-256 in future...
-      returnfield = ""      
-      for drow in self.droidlist:
-         if drow['MD5_HASH'] == md5:
-            if self.impgen.get_title(drow['NAME']) == itemtitle:
-               droidfield = drow[rosettafield]
-               if field == 'File Location':
-                  returnfield = os.path.dirname(droidfield).replace(pathmask, '').replace('\\','/') + '/'
-               if field == 'File Original Path':
-                  returnfield = droidfield.replace(pathmask, '').replace('\\','/')
-               if field == 'File Name':
-                  returnfield = droidfield
-      return returnfield
      
    def csvstringoutput(self, csvlist):
       #String output...
@@ -97,25 +80,24 @@ class RosettaCSVGenerator:
       
       fields = []
 
-      for item in self.exportlist:
+      for item in self.droidlist:
          itemrow = []
-         
          for sections in self.rosettasections:
             sectionrow = ['""'] * len(self.rosettacsvdict)
-            sectionrow[0] = self.add_csv_value(sections.keys()[0])            
+            sectionrow[0] = self.add_csv_value(sections.keys()[0])
             for field in sections[sections.keys()[0]]:
                if field == self.rosettacsvdict[csvindex]['name']:
+
                   if self.config.has_option('rosetta mapping', field):
                      rosettafield = self.config.get('rosetta mapping', field)
                      addvalue = item[rosettafield]
-                     if field == 'Access':
-                        if self.config.has_option('access values', addvalue):
-                           addvalue = self.config.get('access values', addvalue)
-                     sectionrow[csvindex] = self.add_csv_value(addvalue)                     
+                     sectionrow[csvindex] = self.add_csv_value(addvalue)
+                  
                   elif self.config.has_option('static values', field):
                      rosettafield = self.config.get('static values', field)
                      sectionrow[csvindex] = self.add_csv_value(rosettafield)
-                  elif self.config.has_option('droid mapping', field):          
+                     
+                  elif self.config.has_option('droid mapping', field): 
                      rosettafield = self.config.get('droid mapping', field)
                      
                      #get pathmask for location values...
@@ -123,15 +105,24 @@ class RosettaCSVGenerator:
                      pathmask = ""
                      if self.config.has_option('path values', 'pathmask'):
                         pathmask = self.config.get('path values', 'pathmask')
-     
-                     sectionrow[csvindex] = self.add_csv_value(self.grabdroidvalue(item['Missing Comment'], item['Title'], field, rosettafield, pathmask))
+
+                        addvalue = item[rosettafield]
+
+                        if field == 'File Location':
+                           addvalue = os.path.dirname(item[rosettafield]).replace(pathmask, '').replace('\\','/') + '/'
+                        if field == 'File Original Path':
+                           addvalue = item[rosettafield].replace(pathmask, '').replace('\\','/')
+
+                     sectionrow[csvindex] = self.add_csv_value(addvalue)
                   else:
                      sectionrow[csvindex] = self.add_csv_value(field)
-               else:
-                  sys.exit(0)
-               csvindex+=1
+
                
+               csvindex+=1
+         
+          
             itemrow.append(sectionrow)
+
          fields.append(itemrow)
          csvindex=CSVINDEXSTARTPOS
       
@@ -151,8 +142,6 @@ class RosettaCSVGenerator:
          return droidcsvhandler.removecontainercontents(droidlist)        
       
    def export2rosettacsv(self):
-      if self.droidcsv != False and self.exportsheet != False:
+      if self.droidcsv != False:
          self.droidlist = self.readDROIDCSV()
-         self.exportlist = self.readExportCSV()
-         #self.readRosettaSchema()  #NOTE: Moved to constructor... TODO: Refactor
          self.createrosettacsv()
