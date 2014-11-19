@@ -129,6 +129,15 @@
             }
         },
         {
+            "name": "Digital Original",
+            "description": "Specifiying whether this is a digital original or not.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "^(TRUE)$"
+            }
+        },
+        {
             "name": "File Location",
             "description": "Directory path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash. Does not contain filename",
             "type": "http://www.w3.org/2001/XMLSchema#string",
@@ -168,15 +177,6 @@
             "constraints": {
                 "required": false,
                 "pattern": "(^([a-fA-F\\d]{32})$|^$)"
-            }
-        },
-        {
-            "name": "Digital Original",
-            "description": "Specifiying whether this is a digital original or not.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "^(TRUE)$"
             }
         },
         {
