@@ -218,7 +218,7 @@
         {
             "name": "Event Date",
             "description": "Date the event happens. ISO8601: {YYYY-MM-DDThh:mm:ss}.",
-            "type": "http://www.w3.org/2001/XMLSchema#datetime",
+            "type": "http://www.w3.org/2001/XMLSchema#dateTime",
             "constraints": {
                 "required": false
             }
