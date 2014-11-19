@@ -84,8 +84,6 @@ class RosettaCSVGenerator:
          itemrow = []
          for sections in self.rosettasections:
          
-            print sections
-         
             sectionrow = ['""'] * len(self.rosettacsvdict)
             sectionrow[0] = self.add_csv_value(sections.keys()[0])
             for field in sections[sections.keys()[0]]:
