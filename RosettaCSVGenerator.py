@@ -11,10 +11,10 @@ from rosettacsvsectionsclass import RosettaCSVSections
 
 class RosettaCSVGenerator:
 
-   def __init__(self, droidcsv=False, rosettaschema=False):
+   def __init__(self, droidcsv=False, rosettaschema=False, configfile=False):
       self.config = ConfigParser.RawConfigParser()
-      self.config.read('rosetta-csv-mapping.cfg')   
-      
+      self.config.read(configfile)   
+            
       self.droidcsv = droidcsv
       
       #NOTE: A bit of a hack, compare with import schema work and refactor
@@ -22,7 +22,7 @@ class RosettaCSVGenerator:
       self.readRosettaSchema()
       
       #Grab Rosetta Sections
-      rs = RosettaCSVSections()
+      rs = RosettaCSVSections(configfile)
       self.rosettasections = rs.sections
 
    def add_csv_value(self, value):
@@ -83,6 +83,9 @@ class RosettaCSVGenerator:
       for item in self.droidlist:
          itemrow = []
          for sections in self.rosettasections:
+         
+            print sections
+         
             sectionrow = ['""'] * len(self.rosettacsvdict)
             sectionrow[0] = self.add_csv_value(sections.keys()[0])
             for field in sections[sections.keys()[0]]:

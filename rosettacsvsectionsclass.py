@@ -4,10 +4,10 @@ class RosettaCSVSections:
    
    sections = []
    
-   def __init__(self):
+   def __init__(self, configfile):
  
       self.config = ConfigParser.RawConfigParser()
-      self.config.read('rosetta-csv-mapping.cfg')   
+      self.config.read(configfile)   
 
       # Configure via CFG to avoid users having to edit code
       if self.config.has_option('rosetta csv fields', 'CSVSECTIONS'):     
