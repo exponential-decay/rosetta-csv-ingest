@@ -100,85 +100,7 @@
                 "required": false,
                 "pattern": "(^(DigitalTransfer)$|^$)"
             }
-        },
-        {
-            "name": "Revision Number",
-            "description": "Version of the file to be uploaded.",
-            "type": "http://www.w3.org/2001/XMLSchema#int",
-            "constraints": {
-                "required": false,
-                "pattern": "(^\\d{1,2}$|^$)"
-            }
-        },
-        {
-            "name": "Usage Type",
-            "description": "What we can do with file instance in Rosetta, e.g. VIEW.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^(VIEW)$|^$)"
-            }
-        },
-        {
-            "name": "Preservation Type",
-            "description": "Preservation purpose of file instance in Rosetta, e.g. Preservation Master.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^(PRESERVATION_MASTER)$|^$)"
-            }
-        },
-        {
-            "name": "Digital Original",
-            "description": "Specifiying whether this is a digital original or not.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "^(TRUE)$"
-            }
-        },
-        {
-            "name": "File Location",
-            "description": "Directory path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash. Does not contain filename",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false
-            }
-        },
-        {
-            "name": "File Original Path",
-            "description": "File path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false
-            }
-        },
-        {
-            "name": "File Name",
-            "description": "File name, including extension, of file to be uploaded.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false
-            }
-        },
-        {
-            "name": "File fixity type",
-            "description": "Checksum type to be used to validate integrity of file to be uploaded.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "((MD5)|^$)"
-            }
-        },
-        {
-            "name": "File fixity value",
-            "description": "Hash generated for the file to be uploaded.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^([a-fA-F\\d]{32})$|^$)"
-            }
-        },
+        },   
         {
             "name": "Event Identifier Type",
             "description": "Type of event ID we're assigning. This will always be EXTERNAL in CSV",
@@ -296,6 +218,84 @@
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
                 "required": false
+            }
+        },                
+        {
+            "name": "Revision Number",
+            "description": "Version of the file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#int",
+            "constraints": {
+                "required": false,
+                "pattern": "(^\\d{1,2}$|^$)"
+            }
+        },
+        {
+            "name": "Usage Type",
+            "description": "What we can do with file instance in Rosetta, e.g. VIEW.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(VIEW)$|^$)"
+            }
+        },
+        {
+            "name": "Preservation Type",
+            "description": "Preservation purpose of file instance in Rosetta, e.g. Preservation Master.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(PRESERVATION_MASTER)$|^$)"
+            }
+        },
+        {
+            "name": "Digital Original",
+            "description": "Specifiying whether this is a digital original or not (Born Digital vs. Digitised).",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "^(TRUE)$"
+            }
+        },
+        {
+            "name": "File Location",
+            "description": "Directory path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash. Does not contain filename",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File Original Path",
+            "description": "File path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File Name",
+            "description": "File name, including extension, of file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File fixity type",
+            "description": "Checksum type to be used to validate integrity of file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "((MD5)|^$)"
+            }
+        },
+        {
+            "name": "File fixity value",
+            "description": "Hash generated for the file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^([a-fA-F\\d]{32})$|^$)"
             }
         }
     ]
