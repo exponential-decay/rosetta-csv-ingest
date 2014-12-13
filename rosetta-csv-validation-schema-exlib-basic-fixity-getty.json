@@ -1,0 +1,94 @@
+{
+    "title": "Rosetta CSV Validation Schema - Archives NZ",
+    "description": "Draft schema for validating CSV files for ingest in Rosetta at Archives New Zealand.",
+	 "validator": "http://csvlint.io/",
+	 "standard" : "http://dataprotocols.org/json-table-schema/",
+    "fields": [
+        { 
+            "name": "Object Type",
+            "description": "The type of object we're describing in the row.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": true,
+                "pattern": "^(SIP|IE|REPRESENTATION|FILE)$"
+            }
+        },
+        {
+            "name": "SIP Title",
+            "description": "Title of the SIP to ingest.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "Title",
+            "description": "Title of the digital object being uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "Revision Number",
+            "description": "Version of the file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#int",
+            "constraints": {
+                "required": false,
+                "pattern": "(^\\d{1,2}$|^$)"
+            }
+        },
+        {
+            "name": "Usage Type",
+            "description": "What we can do with file instance in Rosetta, e.g. VIEW.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(VIEW)$|^$)"
+            }
+        },
+        {
+            "name": "Preservation Type",
+            "description": "Preservation purpose of file instance in Rosetta, e.g. Preservation Master.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(PRESERVATION_MASTER)$|^$)"
+            }
+        },
+        {
+            "name": "File Location",
+            "description": "Directory path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash. Does not contain filename",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File Name",
+            "description": "File name, including extension, of file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File fixity type",
+            "description": "Checksum type to be used to validate integrity of file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "((MD5)|^$)"
+            }
+        },
+        {
+            "name": "File fixity value",
+            "description": "Hash generated for the file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^([a-fA-F\\d]{32})$|^$)"
+            }
+        }
+    ]
+}
