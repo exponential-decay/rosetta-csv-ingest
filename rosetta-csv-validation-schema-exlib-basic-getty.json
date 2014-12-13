@@ -30,78 +30,6 @@
             }
         },
         {
-            "name": "Access",
-            "description": "Rosetta access restriction key.",
-            "type": "http://www.w3.org/2001/XMLSchema#int",
-            "constraints": {
-                "required": false,
-                "pattern": "(^\\d{7}$|^$)"
-            }
-        },
-        {
-            "name": "Archway Identifier for publishing",
-            "description": "Record number in Archive New Zealand's catalogue.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^R\\d{8}$|^$)"
-            }
-        },
-        {
-            "name": "Archway Identifier Type",
-            "description": "Type of identifier used in Archive New Zealand's catalogue.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^(ArchwayUniqueID)$|^$)"
-            }
-        },
-        {
-            "name": "Archway Identifier Value",
-            "description": "Record number in Archive New Zealand's catalogue.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^R\\d{8}$|^$)"
-            }
-        },
-        {
-            "name": "Series",
-            "description": "Series number identifier as denoted by Archive New Zealand's catalogue.",
-            "type": "http://www.w3.org/2001/XMLSchema#int",
-            "constraints": {
-                "required": false,
-                "pattern": "(^\\d{5}$|^$)"
-            }
-        },
-        {
-            "name": "Agency",
-            "description": "Code for originating agency, e.g. Archives New Zealand: AEZB.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^[A-Z]{4}$|^$)"
-            }
-        },
-        {
-            "name": "Entity Type",
-            "description": "Essence of the content found in the digital object.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^(ANZ_NotDetermined)$|^$)"
-            }
-        },
-        {
-            "name": "Submission Reason",
-            "description": "Overarching reason for submission into Rosetta, e.g. Digital Transfer.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^(DigitalTransfer)$|^$)"
-            }
-        },
-        {
             "name": "Revision Number",
             "description": "Version of the file to be uploaded.",
             "type": "http://www.w3.org/2001/XMLSchema#int",
@@ -137,37 +65,11 @@
             }
         },
         {
-            "name": "File Original Path",
-            "description": "File path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false
-            }
-        },
-        {
             "name": "File Name",
             "description": "File name, including extension, of file to be uploaded.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
                 "required": false
-            }
-        },
-        {
-            "name": "File fixity type",
-            "description": "Checksum type to be used to validate integrity of file to be uploaded.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "((MD5)|^$)"
-            }
-        },
-        {
-            "name": "File fixity value",
-            "description": "Hash generated for the file to be uploaded.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^([a-fA-F\\d]{32})$|^$)"
             }
         }
     ]
