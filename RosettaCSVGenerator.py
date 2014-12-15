@@ -121,7 +121,11 @@ class RosettaCSVGenerator:
                         addvalue = item[rosettafield]
 
                         if field == 'File Location':
-                           addvalue = os.path.dirname(item[rosettafield]).replace(pathmask, '').replace('\\','/') + '/'
+                           if not self.includezips:
+                              addvalue = os.path.dirname(item[rosettafield]).replace(pathmask, '').replace('\\','/') + '/'
+                           else:
+                              path = item['URI']
+                              addvalue = "/".join(urlparse(path).path.split('/')[1:-1]).replace(pathmask, '').replace('\\','/') + '/'
                         if field == 'File Original Path':
                            addvalue = item[rosettafield].replace(pathmask, '').replace('\\','/')
 
