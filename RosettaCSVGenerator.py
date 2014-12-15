@@ -11,10 +11,15 @@ from rosettacsvsectionsclass import RosettaCSVSections
 
 class RosettaCSVGenerator:
 
+   includezips = False
+
    def __init__(self, droidcsv=False, rosettaschema=False, configfile=False):
       self.config = ConfigParser.RawConfigParser()
       self.config.read(configfile)   
-            
+
+      if self.config.has_option('application configuration', 'includezips'):
+         self.includezips = self.__handle_text_boolean__(self.config.get('application configuration', 'includezips'))
+
       self.droidcsv = droidcsv
       
       #NOTE: A bit of a hack, compare with import schema work and refactor
@@ -24,6 +29,12 @@ class RosettaCSVGenerator:
       #Grab Rosetta Sections
       rs = RosettaCSVSections(configfile)
       self.rosettasections = rs.sections
+
+   def __handle_text_boolean__(self, boolvalue):
+      if boolvalue.lower() == 'true':
+         return True
+      else:
+         return False
 
    def add_csv_value(self, value):
       field = ''
@@ -140,8 +151,10 @@ class RosettaCSVGenerator:
          droidcsvhandler = droidCSVHandler()
          droidlist = droidcsvhandler.readDROIDCSV(self.droidcsv)
          droidlist = droidcsvhandler.removefolders(droidlist)
-         return droidcsvhandler.removecontainercontents(droidlist)        
-      
+         if not self.includezips:         
+            droidlist = droidcsvhandler.removecontainercontents(droidlist)        
+         return droidlist      
+
    def export2rosettacsv(self):
       if self.droidcsv != False:
          self.droidlist = self.readDROIDCSV()
