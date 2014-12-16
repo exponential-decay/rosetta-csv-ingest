@@ -12,6 +12,7 @@ from rosettacsvsectionsclass import RosettaCSVSections
 class RosettaCSVGenerator:
 
    includezips = False
+   singleIE = False
 
    def __init__(self, droidcsv=False, rosettaschema=False, configfile=False):
       self.config = ConfigParser.RawConfigParser()
@@ -19,6 +20,9 @@ class RosettaCSVGenerator:
 
       if self.config.has_option('application configuration', 'includezips'):
          self.includezips = self.__handle_text_boolean__(self.config.get('application configuration', 'includezips'))
+
+      if self.config.has_option('application configuration', 'singleIE'):
+         self.singleIE = self.__handle_text_boolean__(self.config.get('application configuration', 'singleIE'))
 
       self.droidcsv = droidcsv
       
