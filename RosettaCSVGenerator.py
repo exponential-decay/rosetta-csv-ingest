@@ -156,7 +156,15 @@ class RosettaCSVGenerator:
          droidlist = droidcsvhandler.readDROIDCSV(self.droidcsv)
          droidlist = droidcsvhandler.removefolders(droidlist)
          if not self.includezips:         
-            droidlist = droidcsvhandler.removecontainercontents(droidlist)        
+            droidlist = droidcsvhandler.removecontainercontents(droidlist)
+            
+         if self.includezips:
+            newlist = []
+            for d in droidlist:
+               if droidcsvhandler.getURIScheme(d['URI']) != 'file':
+                  newlist.append(d)
+            droidlist=newlist
+            
          return droidlist      
 
    def export2rosettacsv(self):
