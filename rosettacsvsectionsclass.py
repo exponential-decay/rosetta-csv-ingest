@@ -9,10 +9,12 @@ class RosettaCSVSections:
       self.config = ConfigParser.RawConfigParser()
       self.config.read(configfile)   
 
+      #TODO: handle null/wrong CFG file better
+
       # Configure via CFG to avoid users having to edit code
       if self.config.has_option('rosetta csv fields', 'CSVSECTIONS'):     
          sections = self.config.get('rosetta csv fields', 'CSVSECTIONS').split(',')
-       
+         
       self.sect = []
       for section in sections:     
          if self.config.has_option('rosetta csv fields', section):
