@@ -20,6 +20,9 @@ class RosettaCSVGenerator:
    sectionstatusupdate = False
    lenIE = 0
    lenREP = 0
+   
+   #zip name we removed
+   zipname = ''
 
    def __init__(self, droidcsv=False, rosettaschema=False, configfile=False):
       self.config = ConfigParser.RawConfigParser()
@@ -146,8 +149,19 @@ class RosettaCSVGenerator:
                   if field == self.rosettacsvdict[csvindex]['name']:
 
                      if self.config.has_option('rosetta mapping', field):
-                        rosettafield = self.config.get('rosetta mapping', field)
-                        addvalue = item[rosettafield]
+                     
+                        if field == 'Title':
+                           if self.includezips == True and self.singleIE == True:
+                              addvalue = self.zipname
+                           elif self.singleIE == True:
+                              addvalue = self.config.get('rosetta mapping', field)
+                           else:
+                              rosettafield = self.config.get('rosetta mapping', field)
+                              addvalue = item[rosettafield]
+                        else:
+                           rosettafield = self.config.get('rosetta mapping', field)
+                           addvalue = item[rosettafield]
+                           
                         sectionrow[csvindex] = self.add_csv_value(addvalue)
                      
                      elif self.config.has_option('static values', field):
@@ -219,8 +233,11 @@ class RosettaCSVGenerator:
             for d in droidlist:
                if droidcsvhandler.getURIScheme(d['URI']) != 'file':
                   newlist.append(d)
+               else:
+                  self.zipname = d['NAME']
+                  
             droidlist=newlist
-            
+        
          return droidlist      
 
    def export2rosettacsv(self):
