@@ -13,6 +13,13 @@ class RosettaCSVGenerator:
 
    includezips = False
    singleIE = False
+   
+   #flags for singleIE config
+   ieOutput = False
+   representationOutput = False
+   sectionstatusupdate = False
+   lenIE = 0
+   lenREP = 0
 
    def __init__(self, droidcsv=False, rosettaschema=False, configfile=False):
       self.config = ConfigParser.RawConfigParser()
@@ -93,6 +100,27 @@ class RosettaCSVGenerator:
          csvrows = csvrows + rowdata
       sys.stdout.write(csvrows)
 
+   #TODO: Passed each time we go through the code, improve on this: DO ONCE!
+   def __update_section_status__(self, section):
+   
+      sect = self.__get_section_key__(section)
+   
+      if self.singleIE == True and sect == 'IE':
+         self.ieOutput = True
+         self.lenIE = len(section.values()[0])
+      if self.singleIE == True and sect == 'REPRESENTATION':
+         self.representationOutput = True
+         self.lenREP = len(section.values()[0])
+
+      #One method of only visiting this function only as many times as required...
+      if self.ieOutput == True and self.representationOutput == True:
+         return True
+      else:
+         return False
+ 
+   def __get_section_key__(self, section):
+      return section.keys()[0]
+
    def createrosettacsv(self):
       
       CSVINDEXSTARTPOS = 2
@@ -102,55 +130,75 @@ class RosettaCSVGenerator:
 
       for item in self.droidlist:
          itemrow = []
+         
+         #five
+         
          for sections in self.rosettasections:
-         
-            sectionrow = ['""'] * len(self.rosettacsvdict)
-            sectionrow[0] = self.add_csv_value(sections.keys()[0])
-            for field in sections[sections.keys()[0]]:
-               if field == self.rosettacsvdict[csvindex]['name']:
-
-                  if self.config.has_option('rosetta mapping', field):
-                     rosettafield = self.config.get('rosetta mapping', field)
-                     addvalue = item[rosettafield]
-                     sectionrow[csvindex] = self.add_csv_value(addvalue)
-                  
-                  elif self.config.has_option('static values', field):
-                     rosettafield = self.config.get('static values', field)
-                     sectionrow[csvindex] = self.add_csv_value(rosettafield)
-                     
-                  elif self.config.has_option('droid mapping', field): 
-                     rosettafield = self.config.get('droid mapping', field)
-                     
-                     #get pathmask for location values...
-                     #TODO: Only need to do this once somewhere... e.g. Constructor
-                     pathmask = ""
-                     if self.config.has_option('path values', 'pathmask'):
-                        pathmask = self.config.get('path values', 'pathmask')
-
-                        addvalue = item[rosettafield]
-
-                        if field == 'File Location':
-                           if not self.includezips:
-                              addvalue = os.path.dirname(item[rosettafield]).replace(pathmask, '').replace('\\','/') + '/'
-                           else:
-                              path = item['URI']
-                              addvalue = "/".join(urlparse(path).path.split('/')[1:-1]).replace(pathmask, '').replace('\\','/') + '/'
-                        if field == 'File Original Path':
-                           addvalue = item[rosettafield].replace(pathmask, '').replace('\\','/')
-
-                     sectionrow[csvindex] = self.add_csv_value(addvalue)
-                  else:
-                     sectionrow[csvindex] = self.add_csv_value(field)
-
+            
+            #TODO: Could be more intuitive
+            #IF relates to single IE for the file or not... IF 'not', then we don't output IE and REP for a single IE
+            if not (self.sectionstatusupdate == True and (self.__get_section_key__(sections) == 'REPRESENTATION' or self.__get_section_key__(sections) == 'IE')):
+           
+               sectionrow = ['""'] * len(self.rosettacsvdict)
+               sectionrow[0] = self.add_csv_value(sections.keys()[0])
                
-               csvindex+=1
-         
-          
-            itemrow.append(sectionrow)
+               #ROW OUTPUT LOOP STARTS
+               for field in sections[sections.keys()[0]]:
+               
+                  if field == self.rosettacsvdict[csvindex]['name']:
 
+                     if self.config.has_option('rosetta mapping', field):
+                        rosettafield = self.config.get('rosetta mapping', field)
+                        addvalue = item[rosettafield]
+                        sectionrow[csvindex] = self.add_csv_value(addvalue)
+                     
+                     elif self.config.has_option('static values', field):
+                        rosettafield = self.config.get('static values', field)
+                        sectionrow[csvindex] = self.add_csv_value(rosettafield)
+                        
+                     elif self.config.has_option('droid mapping', field): 
+                        rosettafield = self.config.get('droid mapping', field)
+                        
+                        #get pathmask for location values...
+                        #TODO: Only need to do this once somewhere... e.g. Constructor
+                        pathmask = ""
+                        if self.config.has_option('path values', 'pathmask'):
+                           pathmask = self.config.get('path values', 'pathmask')
+
+                           addvalue = item[rosettafield]
+
+                           if field == 'File Location':
+                              if not self.includezips:
+                                 addvalue = os.path.dirname(item[rosettafield]).replace(pathmask, '').replace('\\','/') + '/'
+                              else:
+                                 path = item['URI']
+                                 addvalue = "/".join(urlparse(path).path.split('/')[1:-1]).replace(pathmask, '').replace('\\','/') + '/'
+                           if field == 'File Original Path':
+                              addvalue = item[rosettafield].replace(pathmask, '').replace('\\','/')
+
+                        sectionrow[csvindex] = self.add_csv_value(addvalue)
+                     else:
+                        sectionrow[csvindex] = self.add_csv_value(field)
+
+                     csvindex+=1
+
+               itemrow.append(sectionrow)
+               #ROW OUTPUT LOOP ENDS
+
+            #Need to know to output sections if we have a single IE
+            if not self.sectionstatusupdate and self.singleIE:
+               self.sectionstatusupdate = self.__update_section_status__(sections)
+         
+         #add row to sheet
          fields.append(itemrow)
+
+         #reset field entry point, default two represents Object Type and SIP Title (see schema)
          csvindex=CSVINDEXSTARTPOS
-      
+         if self.singleIE:
+            number_of_empty_fields = CSVINDEXSTARTPOS + self.lenIE + self.lenREP
+            #len IE + Len REP? 
+            csvindex=number_of_empty_fields
+
       self.csvstringoutput(fields)
 
    def readExportCSV(self):
