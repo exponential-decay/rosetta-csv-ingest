@@ -157,7 +157,8 @@ class RosettaCSVGenerator:
          droidlist = droidcsvhandler.removefolders(droidlist)
          if not self.includezips:         
             droidlist = droidcsvhandler.removecontainercontents(droidlist)
-            
+         
+         #TODO: Move to DROIDCSVHANDLER Class
          if self.includezips:
             newlist = []
             for d in droidlist:
