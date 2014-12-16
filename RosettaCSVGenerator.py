@@ -131,8 +131,6 @@ class RosettaCSVGenerator:
       for item in self.droidlist:
          itemrow = []
          
-         #five
-         
          for sections in self.rosettasections:
             
             #TODO: Could be more intuitive
