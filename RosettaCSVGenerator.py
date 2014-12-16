@@ -71,7 +71,12 @@ class RosettaCSVGenerator:
       #Static ROW in CSV Ingest Sheet
       SIPROW = ['"",'] * len(self.rosettacsvdict)
       SIPROW[0] = '"SIP",'
-      SIPROW[1] = '"CSV Load",'
+      
+      #SIP Title... 
+      if self.config.has_option('rosetta mapping', 'SIP Title'):
+         SIPROW[1] = '"' + self.config.get('rosetta mapping', 'SIP Title') + '",'
+      else:
+         SIPROW[1] = '"CSV Load",'
      
       csvrows = csvrows + ''.join(SIPROW).rstrip(',') + '\n'
       
