@@ -181,11 +181,7 @@ class RosettaCSVGenerator:
 
                            if field == 'File Location':
                               if not self.includezips:
-                                 basedirname = os.path.dirname(item[rosettafield]) + '\\'
-                                 addvalue = basedirname.replace(pathmask, '').replace('\\','/') + '/'
-                                 #TODO: Test against other cases, workaround for no directory structure in ZIP
-                                 if addvalue == '/' and len(addvalue) == 1:
-                                    addvalue = ""
+                                 addvalue = os.path.dirname(item[rosettafield]).replace(pathmask, '').replace('\\','/') + '/'
                               else:
                                  path = item['URI']
                                  addvalue = "/".join(urlparse(path).path.split('/')[1:-1]).replace(pathmask, '').replace('\\','/') + '/'
