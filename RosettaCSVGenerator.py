@@ -101,7 +101,7 @@ class RosettaCSVGenerator:
                rowdata = rowdata + fielddata + ','
             rowdata = rowdata.rstrip(',') + '\n'
          csvrows = csvrows + rowdata
-      sys.stdout.write(csvrows)
+      #sys.stdout.write(csvrows)
 
    #TODO: Passed each time we go through the code, improve on this: DO ONCE!
    def __update_section_status__(self, section):
@@ -182,7 +182,7 @@ class RosettaCSVGenerator:
                            if field == 'File Location':
                               if not self.includezips:
                                  basedirname = os.path.dirname(item[rosettafield]) + '\\'
-                                 addvalue = basedirname.replace(pathmask, '').replace('\\','/') + '/'
+                                 addvalue = basedirname.replace(pathmask, '').replace('\\','/') 
                                  #TODO: Test against other cases, workaround for no directory structure in ZIP
                                  if addvalue == '/' and len(addvalue) == 1:
                                     addvalue = ""
