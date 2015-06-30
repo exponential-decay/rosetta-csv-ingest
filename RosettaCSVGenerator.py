@@ -150,9 +150,12 @@ class RosettaCSVGenerator:
 
                      if self.config.has_option('rosetta mapping', field):
                      
-                        if field == 'Title':
+                        if field == 'Title' or field == 'Title(DC)':       #Title(DC) added for future configuration
                            if self.includezips == True and self.singleIE == True:
-                              addvalue = self.zipname
+                              if self.config.has_option('application configuration', 'ziptitle'):
+                                 addvalue = self.config.get('application configuration', 'ziptitle')
+                              else:
+                                 addvalue = self.zipname
                            elif self.singleIE == True:
                               addvalue = self.config.get('rosetta mapping', field)
                            else:
