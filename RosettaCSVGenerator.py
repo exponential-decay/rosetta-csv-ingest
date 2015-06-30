@@ -101,7 +101,7 @@ class RosettaCSVGenerator:
                rowdata = rowdata + fielddata + ','
             rowdata = rowdata.rstrip(',') + '\n'
          csvrows = csvrows + rowdata
-      #sys.stdout.write(csvrows)
+      sys.stdout.write(csvrows)
 
    #TODO: Passed each time we go through the code, improve on this: DO ONCE!
    def __update_section_status__(self, section):
