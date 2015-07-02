@@ -169,6 +169,22 @@
                 "required": false,
                 "pattern": "(^([a-fA-F\\d]{32})$|^$)"
             }
+        },
+        {
+            "name": "Modification Date",
+            "description": "Date file was last modified.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "Creation Date",
+            "description": "Date file was created.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
         }
     ]
 }
