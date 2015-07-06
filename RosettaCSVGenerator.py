@@ -196,8 +196,9 @@ class RosettaCSVGenerator:
                               addvalue = item[rosettafield].replace(pathmask, '').replace('\\','/')
 
                         sectionrow[csvindex] = self.add_csv_value(addvalue)
-                     else:
-                        sectionrow[csvindex] = self.add_csv_value(field)
+                     else:                     
+                        #If we haven't a value, add a blank field...
+                        sectionrow[csvindex] = self.add_csv_value("")
 
                      csvindex+=1
 

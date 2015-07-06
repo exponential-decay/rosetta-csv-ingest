@@ -1,0 +1,198 @@
+{
+    "title": "Rosetta CSV Validation Schema - Archives NZ",
+    "description": "Draft schema for validating CSV files for ingest in Rosetta at Archives New Zealand.",
+	 "validator": "http://csvlint.io/",
+	 "standard" : "http://dataprotocols.org/json-table-schema/",
+    "fields": [
+        { 
+            "name": "Object Type",
+            "description": "The type of object we're describing in the row.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": true,
+                "pattern": "^(SIP|IE|REPRESENTATION|FILE)$"
+            }
+        },
+        {
+            "name": "SIP Title",
+            "description": "Title of the SIP to ingest.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "Title",
+            "description": "Title of the digital object being uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "Access",
+            "description": "Rosetta access restriction key.",
+            "type": "http://www.w3.org/2001/XMLSchema#int",
+            "constraints": {
+                "required": false,
+                "pattern": "(^\\d{7}$|^$)"
+            }
+        },
+        {
+            "name": "Archway Identifier for publishing",
+            "description": "Record number in Archive New Zealand's catalogue.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^R\\d{8}$|^$)"
+            }
+        },
+        {
+            "name": "Archway Identifier Type",
+            "description": "Type of identifier used in Archive New Zealand's catalogue.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(ArchwayUniqueID)$|^$)"
+            }
+        },
+        {
+            "name": "Archway Identifier Value",
+            "description": "Record number in Archive New Zealand's catalogue.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^R\\d{8}$|^$)"
+            }
+        },
+        {
+            "name": "Series",
+            "description": "Series number identifier as denoted by Archive New Zealand's catalogue.",
+            "type": "http://www.w3.org/2001/XMLSchema#int",
+            "constraints": {
+                "required": false,
+                "pattern": "(^\\d{5}$|^$)"
+            }
+        },
+        {
+            "name": "Agency",
+            "description": "Code for originating agency, e.g. Archives New Zealand: AEZB.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^[A-Z]{4}$|^$)"
+            }
+        },
+        {
+            "name": "Entity Type",
+            "description": "Essence of the content found in the digital object.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(ANZ_NotDetermined)$|^$)"
+            }
+        },
+        {
+            "name": "Submission Reason",
+            "description": "Overarching reason for submission into Rosetta, e.g. Digital Transfer.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(DigitalTransfer)$|^$)"
+            }
+        },
+        {
+            "name": "Revision Number",
+            "description": "Version of the file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#int",
+            "constraints": {
+                "required": false,
+                "pattern": "(^\\d{1,2}$|^$)"
+            }
+        },
+        {
+            "name": "Usage Type",
+            "description": "What we can do with file instance in Rosetta, e.g. VIEW.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(VIEW)$|^$)"
+            }
+        },
+        {
+            "name": "Preservation Type",
+            "description": "Preservation purpose of file instance in Rosetta, e.g. Preservation Master.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(PRESERVATION_MASTER)$|^$)"
+            }
+        },
+        {
+            "name": "File Location",
+            "description": "Directory path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash. Does not contain filename",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File Original Path",
+            "description": "File path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File Name",
+            "description": "File name, including extension, of file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File Label",
+            "description": "File label as an alternative to name.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "File fixity type",
+            "description": "Checksum type to be used to validate integrity of file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "((MD5)|^$)"
+            }
+        },
+        {
+            "name": "File fixity value",
+            "description": "Hash generated for the file to be uploaded.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^([a-fA-F\\d]{32})$|^$)"
+            }
+        },
+        {
+            "name": "Modification Date",
+            "description": "Date file was last modified.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "Creation Date",
+            "description": "Date file was created.",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
+            }
+        }
+    ]
+}
