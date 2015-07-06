@@ -120,12 +120,29 @@
             }
         },
         {
+            "name": "Representation Code",
+            "description": "Is this file a digital original?",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(True|False)$|^$)"
+            }
+        },
+        {
             "name": "Preservation Type",
             "description": "Preservation purpose of file instance in Rosetta, e.g. Preservation Master.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
                 "required": false,
-                "pattern": "(^(PRESERVATION_MASTER)$|^$)"
+                "pattern": "(^(PRESERVATION_MASTER|DERIVATIVE_COPY)$|^$)"
+            }
+        },
+        {
+            "name": "Digital Original",
+            "description": "Is this file a digital original?",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false
             }
         },
         {
