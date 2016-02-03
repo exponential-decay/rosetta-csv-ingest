@@ -245,7 +245,10 @@ class RosettaCSVGenerator:
                   self.zipname = d['NAME']
                   
             droidlist=newlist
-        
+
+         if len(droidlist) == 0:
+            sys.exit("ERROR: Listing empty. Check ingest from ZIP settings, or contents of DROID report.")
+
          return droidlist      
 
    def export2rosettacsv(self):
