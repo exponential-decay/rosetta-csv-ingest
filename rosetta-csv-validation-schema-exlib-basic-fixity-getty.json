@@ -1,6 +1,6 @@
 {
-    "title": "Rosetta CSV Validation Schema - Archives NZ",
-    "description": "Draft schema for validating CSV files for ingest in Rosetta at Archives New Zealand.",
+    "title": "Rosetta CSV Validation Schema - Getty Research Institute",
+    "description": "Draft schema for validating CSV files for ingest in Rosetta at Getty Research Institute",
 	 "validator": "http://csvlint.io/",
 	 "standard" : "http://dataprotocols.org/json-table-schema/",
     "fields": [
@@ -22,7 +22,7 @@
             }
         },
         {
-            "name": "Title",
+            "name": "Title(DC)",
             "description": "Title of the digital object being uploaded.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -57,7 +57,7 @@
             }
         },
         {
-            "name": "File Location",
+            "name": "File Original Path",
             "description": "Directory path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash. Does not contain filename",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -65,7 +65,7 @@
             }
         },
         {
-            "name": "File Name",
+            "name": "File Original Name",
             "description": "File name, including extension, of file to be uploaded.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -73,16 +73,7 @@
             }
         },
         {
-            "name": "File fixity type",
-            "description": "Checksum type to be used to validate integrity of file to be uploaded.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "((MD5)|^$)"
-            }
-        },
-        {
-            "name": "File fixity value",
+            "name": "MD5",
             "description": "Hash generated for the file to be uploaded.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
