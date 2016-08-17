@@ -22,7 +22,7 @@
             }
         },
         {
-            "name": "Title",
+            "name": "Title (DC)",
             "description": "Title of the digital object being uploaded.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -30,7 +30,7 @@
             }
         },
         {
-            "name": "Access",
+            "name": "Access Rights Policy ID (IE)",
             "description": "Rosetta access restriction key.",
             "type": "http://www.w3.org/2001/XMLSchema#int",
             "constraints": {
@@ -39,7 +39,7 @@
             }
         },
         {
-            "name": "Archway Identifier for publishing",
+            "name": "Archway Unique ID (Object Identifier)",
             "description": "Record number in Archive New Zealand's catalogue.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -48,16 +48,7 @@
             }
         },
         {
-            "name": "Archway Identifier Type",
-            "description": "Type of identifier used in Archive New Zealand's catalogue.",
-            "type": "http://www.w3.org/2001/XMLSchema#string",
-            "constraints": {
-                "required": false,
-                "pattern": "(^(ArchwayUniqueID)$|^$)"
-            }
-        },
-        {
-            "name": "Archway Identifier Value",
+            "name": "Identifier - Archway Unique Id (DC)",
             "description": "Record number in Archive New Zealand's catalogue.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -66,7 +57,7 @@
             }
         },
         {
-            "name": "Series",
+            "name": "Archway Series Number",
             "description": "Series number identifier as denoted by Archive New Zealand's catalogue.",
             "type": "http://www.w3.org/2001/XMLSchema#int",
             "constraints": {
@@ -75,7 +66,7 @@
             }
         },
         {
-            "name": "Agency",
+            "name": "Provenance (dcterms)",
             "description": "Code for originating agency, e.g. Archives New Zealand: AEZB.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -84,7 +75,7 @@
             }
         },
         {
-            "name": "Entity Type",
+            "name": "IE Entity Type",
             "description": "Essence of the content found in the digital object.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -101,6 +92,15 @@
                 "pattern": "(^(DigitalTransfer)$|^$)"
             }
         },
+        
+        
+        
+        
+        
+        
+        
+        
+        
         {
             "name": "Revision Number",
             "description": "Version of the file to be uploaded.",
@@ -120,17 +120,26 @@
             }
         },
         {
+            "name": "Representation Code",
+            "description": "Is this file a digital original?",
+            "type": "http://www.w3.org/2001/XMLSchema#string",
+            "constraints": {
+                "required": false,
+                "pattern": "(^(True|False)$|^$)"
+            }
+        },
+        {
             "name": "Preservation Type",
             "description": "Preservation purpose of file instance in Rosetta, e.g. Preservation Master.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
                 "required": false,
-                "pattern": "(^(PRESERVATION_MASTER)$|^$)"
+                "pattern": "(^(PRESERVATION_MASTER|DERIVATIVE_COPY)$|^$)"
             }
         },
         {
-            "name": "File Location",
-            "description": "Directory path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash. Does not contain filename",
+            "name": "Digital Original",
+            "description": "Is this file a digital original?",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
                 "required": false
@@ -138,14 +147,14 @@
         },
         {
             "name": "File Original Path",
-            "description": "File path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash.",
+            "description": "Directory path to location of file to be uploaded. Path begins at root of ZIP and does not begin with an opening slash. Does not contain filename",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
                 "required": false
             }
         },
         {
-            "name": "File Name",
+            "name": "File Original Name",
             "description": "File name, including extension, of file to be uploaded.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -153,16 +162,15 @@
             }
         },
         {
-            "name": "File fixity type",
-            "description": "Checksum type to be used to validate integrity of file to be uploaded.",
+            "name": "File Label",
+            "description": "File label as an alternative to name.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
-                "required": false,
-                "pattern": "((MD5)|^$)"
+                "required": false
             }
         },
         {
-            "name": "File fixity value",
+            "name": "MD5",
             "description": "Hash generated for the file to be uploaded.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -171,7 +179,7 @@
             }
         },
         {
-            "name": "Modification Date",
+            "name": "File Modification Date (General File Characteristics)",
             "description": "Date file was last modified.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
@@ -179,7 +187,7 @@
             }
         },
         {
-            "name": "Creation Date",
+            "name": "File Creation Date (General File Characteristics)",
             "description": "Date file was created.",
             "type": "http://www.w3.org/2001/XMLSchema#string",
             "constraints": {
