@@ -92,15 +92,6 @@
                 "pattern": "(^(DigitalTransfer)$|^$)"
             }
         },
-        
-        
-        
-        
-        
-        
-        
-        
-        
         {
             "name": "Revision Number",
             "description": "Version of the file to be uploaded.",
