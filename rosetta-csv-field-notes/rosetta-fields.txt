@@ -1,0 +1,43 @@
+﻿Object Type
+Title (DC)
+Title (DC)
+Access Rights Policy ID (IE)
+Archway Unique ID (Object Identifier)
+Identifier - Archway Unique Id (DC)
+Archway Series Number
+Provenance (dcterms)
+IE Entity Type
+Submission Reason
+Revision Number
+Usage Type
+Representation Code
+Preservation Type
+Digital Original
+File Original Path
+File Original Name
+File Label
+MD5
+File Modification Date (General File Characteristics)
+File Creation Date (General File Characteristics)
+
+"name": "Object Type",
+"name": "SIP Title",
+"name": "Title (DC)",
+"name": "Access Rights Policy ID (IE)",
+"name": "Archway Unique ID (Object Identifier)",
+"name": "Identifier - Archway Unique Id (DC)",
+"name": "Archway Series Number",
+"name": "Provenance (dcterms)",
+"name": "IE Entity Type",
+"name": "Submission Reason",
+"name": "Revision Number",
+"name": "Usage Type",
+"name": "Representation Code",
+"name": "Preservation Type",
+"name": "Digital Original",
+"name": "File Original Path",
+"name": "File Original Name",
+"name": "File Label",
+"name": "MD5",
+"name": "File Modification Date (General File Characteristics)",
+"name": "File Creation Date (General File Characteristics)",
