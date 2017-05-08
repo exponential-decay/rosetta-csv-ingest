@@ -4,7 +4,7 @@
 import os
 import sys
 import argparse
-from RosettaCSVGenerator import RosettaCSVGenerator
+from libs.RosettaCSVGenerator import RosettaCSVGenerator
 
 def rosettacsvgeneration(droidcsv, rosettaschema, configfile):
    csvgen = RosettaCSVGenerator(droidcsv, rosettaschema, configfile)
