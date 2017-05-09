@@ -101,8 +101,15 @@ class RosettaCSVGenerator:
                rowdata = rowdata + fielddata + ','
             rowdata = rowdata.rstrip(',') + '\n'
          csvrows = csvrows + rowdata
-      sys.stdout.write(csvrows)
-
+         
+      #this is the best i can think of because ExLibris have named two fields with the same
+      #title in CSV which doesn't help us when we're trying to use unique names for populating rows
+      #replaces SIP Title with Title (DC)
+      csvrows = csvrows.replace('"Object Type","SIP Title"','"Object Type","Title (DC)"')
+      
+      #finally output CSV
+      sys.stdout.write(csvrows)         
+      
    #TODO: Passed each time we go through the code, improve on this: DO ONCE!
    def __update_section_status__(self, section):
    
